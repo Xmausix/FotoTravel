@@ -1,46 +1,33 @@
 // src/components/shared/InteractiveMap.tsx
 "use client";
 
-import React, { useEffect }_from_ 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } _from_ 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L _from_ 'leaflet';
+import L from 'leaflet';
 
-// Poprawka dla domyślnej ikony znacznika Leaflet w projektach z Webpack/Next.js
-// Upewnij się, że ścieżki do obrazów są poprawne w Twoim projekcie,
-// lub rozważ użycie niestandardowej ikony.
-// Next.js może wymagać specjalnego traktowania zasobów statycznych.
-// Poniższy import może wymagać dostosowania w zależności od konfiguracji Next.js i public folder.
-// Jeśli obrazy są w public/images, ścieżki będą np. '/images/marker-icon.png'
-// Dla uproszczenia, można też użyć CDN dla ikon lub skonfigurować aliasy.
-
-// Prosta konfiguracja domyślnej ikony (może wymagać dostosowania)
-// Jeśli masz problemy z ikonami, rozważ skopiowanie obrazów marker-icon.png, marker-icon-2x.png, marker-shadow.png
-// do folderu `public` i dostosowanie ścieżek.
-// Alternatywnie, można użyć biblioteki `leaflet-defaulticon-compatibility`.
-
-// Rozwiązanie problemu z ikonami w Next.js (często spotykane)
+// Poprawka dla domyślnej ikony znacznika Leaflet w Next.js
 if (typeof window !== 'undefined') {
     // Usuwamy potencjalnie błędnie ustawioną ścieżkę przez Leaflet
+    // To jest bezpieczne rzutowanie typu, aby uzyskać dostęp do prywatnego pola dla tego obejścia.
     delete (L.Icon.Default.prototype as any)._getIconUrl;
 
     L.Icon.Default.mergeOptions({
-        iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png').default.src,
-        iconUrl: require('leaflet/dist/images/marker-icon.png').default.src,
-        shadowUrl: require('leaflet/dist/images/marker-shadow.png').default.src,
+        // Ścieżki wskazują teraz na pliki w folderze public
+        iconRetinaUrl: '/leaflet-images/marker-icon-2x.png',
+        iconUrl: '/leaflet-images/marker-icon.png',
+        shadowUrl: '/leaflet-images/marker-shadow.png',
     });
 }
-
 
 export interface InteractiveMapProps {
     lat: number;
     lng: number;
     zoom?: number;
     markerText?: string;
-    className?: string; // Opcjonalna klasa dla kontenera mapy
+    className?: string;
 }
 
-// Komponent pomocniczy do aktualizacji widoku mapy przy zmianie propsów
 const MapViewUpdater: React.FC<{ lat: number; lng: number; zoom: number }> = ({ lat, lng, zoom }) => {
     const map = useMap();
     useEffect(() => {
@@ -52,24 +39,25 @@ const MapViewUpdater: React.FC<{ lat: number; lng: number; zoom: number }> = ({ 
 const InteractiveMap: React.FC<InteractiveMapProps> = ({
                                                            lat,
                                                            lng,
-                                                           zoom = 13, // Domyślny zoom, jeśli nie zostanie podany
+                                                           zoom = 13,
                                                            markerText,
                                                            className
                                                        }) => {
-    // Leaflet działa tylko w przeglądarce.
-    // "use client" i dynamic import z ssr: false powinny to załatwić,
-    // ale dodatkowe zabezpieczenie nie zaszkodzi.
     if (typeof window === 'undefined') {
-        return <div className={className || "w-full h-64 bg-muted flex items-center justify-center"}><p>Ładowanie mapy...</p></div>;
+        return (
+            <div className={className || "w-full h-64 bg-muted flex items-center justify-center"}>
+                <p>Inicjalizacja mapy...</p>
+            </div>
+        );
     }
 
     return (
         <MapContainer
             center={[lat, lng]}
             zoom={zoom}
-            scrollWheelZoom={true} // Możesz ustawić na false, jeśli preferujesz
-            className={className || "w-full h-full"} // Domyślne klasy, jeśli nie podano
-            style={{ height: '100%', width: '100%' }} // Upewnij się, że kontener ma wymiary
+            scrollWheelZoom={true}
+            className={className || "w-full h-full"}
+            style={{ height: '100%', width: '100%' }}
         >
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -78,7 +66,6 @@ const InteractiveMap: React.FC<InteractiveMapProps> = ({
             <Marker position={[lat, lng]}>
                 {markerText && <Popup>{markerText}</Popup>}
             </Marker>
-            {/* Aktualizuje widok mapy, gdy zmieniają się współrzędne lub zoom */}
             <MapViewUpdater lat={lat} lng={lng} zoom={zoom} />
         </MapContainer>
     );

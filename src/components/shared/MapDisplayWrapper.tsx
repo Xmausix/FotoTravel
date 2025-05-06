@@ -6,14 +6,9 @@ import dynamic from 'next/dynamic';
 // Importujemy typ propsów dla InteractiveMap. Jest on również używany przez ten komponent-wrapper.
 import type { InteractiveMapProps } from '@/components/shared/InteractiveMap';
 
-// Komponent InteractiveMap jest ładowany dynamicznie.
-// Jest to konieczne, ponieważ biblioteka Leaflet (na której bazuje InteractiveMap)
-// działa wyłącznie po stronie klienta.
-// Opcja `ssr: false` zapobiega próbie renderowania tego komponentu na serwerze.
-// Funkcja `loading` dostarcza tymczasowy interfejs użytkownika (np. komunikat ".")
-// na czas ładowania właściwego komponentu mapy.
+
 const DynamicallyLoadedInteractiveMap = dynamic(
-    () => import('@/components/shared/InteractiveMap'), // To jest funkcja ładująca, która mówi Next.js, JAKI moduł załadować dynamicznie.
+    () => import('@/components/shared/InteractiveMap'), // POPRAWKA: Usunięto dodatkowe nawiasy wokół ścieżki importu
     // Sama funkcja `import()` w tym miejscu jest częścią mechanizmu dynamicznych importów.
     {
         ssr: false, // Kluczowe dla bibliotek klienckich jak Leaflet
@@ -25,5 +20,8 @@ const DynamicallyLoadedInteractiveMap = dynamic(
     }
 );
 
-// MapDisplayWrapper to komponent kliencki, który "opakowuje"
-// dynamicz
+const MapDisplayWrapper: React.FC<InteractiveMapProps> = (props) => {
+    return <DynamicallyLoadedInteractiveMap {...props} />;
+};
+
+export default MapDisplayWrapper;
