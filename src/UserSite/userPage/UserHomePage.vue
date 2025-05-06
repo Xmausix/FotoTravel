@@ -7,7 +7,7 @@ import FeaturedPosts from '../../Components/user/FeaturedPosts.vue'
   <div>
     <Hero />
     <FeaturedPosts />
-
+    
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
@@ -41,27 +41,27 @@ import FeaturedPosts from '../../Components/user/FeaturedPosts.vue'
           </div>
           <div class="mt-10 lg:mt-0">
             <div class="relative aspect-w-5 aspect-h-3 rounded-lg overflow-hidden">
-              <img
-                  src="https://fototravel.com.pl/wp-content/uploads/2022/01/6A506E5B-67E6-4912-A8E1-CC2FE2E96FE0-scaled.jpeg"
-                  alt="Kapliczka w górcecku kościelnym"
-                  class="object-cover h-[75vh] w-[40vw]"
+              <img 
+                src="https://fototravel.com.pl/wp-content/uploads/2022/01/6A506E5B-67E6-4912-A8E1-CC2FE2E96FE0-scaled.jpeg"
+                alt="Kapliczka w górcecku kościelnym"
+                class="object-cover h-[75vh] w-[40vw]"
               />
             </div>
           </div>
         </div>
       </div>
     </section>
-
+    
     <section class="py-16 bg-primary-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl mb-8">Ostatnie podróże</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div class="group">
             <div class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
-              <img
-                  src="https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0096-52-scaled.jpg"
-                  alt="susiec"
-                  class="object-cover transform transition-transform duration-500 group-hover:scale-110"
+              <img 
+                src="https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0096-52-scaled.jpg"
+                alt="susiec"
+                class="object-cover transform transition-transform duration-500 group-hover:scale-110"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black opacity-60"></div>
               <div class="absolute inset-0 flex items-end p-4">
@@ -71,10 +71,10 @@ import FeaturedPosts from '../../Components/user/FeaturedPosts.vue'
           </div>
           <div class="group">
             <div class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
-              <img
-                  src="https://fototravel.com.pl/wp-content/uploads/2023/12/DSC_0003-3-scaled.jpg"
-                  alt="wzgórze polak"
-                  class="object-cover transform transition-transform duration-500 group-hover:scale-110"
+              <img 
+                src="https://fototravel.com.pl/wp-content/uploads/2023/12/DSC_0003-3-scaled.jpg"
+                alt="wzgórze polak"
+                class="object-cover transform transition-transform duration-500 group-hover:scale-110"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black opacity-60"></div>
               <div class="absolute inset-0 flex items-end p-4">
@@ -84,10 +84,10 @@ import FeaturedPosts from '../../Components/user/FeaturedPosts.vue'
           </div>
           <div class="group">
             <div class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
-              <img
-                  src="https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0053-53-scaled.jpg"
-                  alt="halicz"
-                  class="object-cover transform transition-transform duration-500 group-hover:scale-110"
+              <img 
+                src="https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0053-53-scaled.jpg"
+                alt="halicz"
+                class="object-cover transform transition-transform duration-500 group-hover:scale-110"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black opacity-60"></div>
               <div class="absolute inset-0 flex items-end p-4">
@@ -97,10 +97,10 @@ import FeaturedPosts from '../../Components/user/FeaturedPosts.vue'
           </div>
           <div class="group">
             <div class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
-              <img
-                  src="https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0095-51-scaled.jpg"
-                  alt="cos"
-                  class="object-cover transform transition-transform duration-500 group-hover:scale-110"
+              <img 
+                src="https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0095-51-scaled.jpg"
+                alt="cos"
+                class="object-cover transform transition-transform duration-500 group-hover:scale-110"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-black opacity-60"></div>
               <div class="absolute inset-0 flex items-end p-4">

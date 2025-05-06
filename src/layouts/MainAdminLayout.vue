@@ -4,7 +4,7 @@ import Footer from '../components/common/Footer.vue'
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col">x
     <NavigationBar />
     
     <main class="flex-grow">

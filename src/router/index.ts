@@ -1,43 +1,69 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 
 // User pages
-import HomePage from '../pages/user/HomePage.vue'
-import TravelsPage from '../pages/user/TravelsPage.vue'
-import PostPage from '../pages/user/PostPage.vue'
+import UserHomePage from '../UserSite/userPage/UserHomePage.vue'
+import UserTravelsPage from '../UserSite/userPage/UserTravelsPage.vue'
+import UserPostPage from '../UserSite/userPage/UserPostPage.vue'
 
 // Admin pages
-import LoginPage from '../pages/admin/LoginPage.vue'
-import AdminDashboard from '../pages/admin/DashboardPage.vue'
-import AdminSettings from '../pages/admin/SettingsPage.vue'
-import AdminAddPost from '../pages/admin/AddPostPage.vue'
+import LoginPage from '../Pages/admin/LoginPage.vue'
+import AdminDashboard from '../Pages/admin/DashboardPage.vue'
+import AdminSettings from '../Pages/admin/SettingsPage.vue'
+import AdminAddPost from '../Pages/admin/AddPostPage.vue'
+
+// Public Admin Site
+import HomePage from '../Pages/user/HomePage.vue'
+import TravelsPage from '../Pages/user/TravelsPage.vue'
+import PostPage from '../Pages/user/PostPage.vue'
 
 // Layouts
-import UserLayout from '../layouts/UserLayout.vue'
+import MainAdminLayout from '../layouts/MainAdminLayout.vue'
+import Layout from '../UserSite/Layout.vue'
 import AdminLayout from '../layouts/AdminLayout.vue'
 
 const routes = [
+  // 1. User site
   {
     path: '/',
-    component: UserLayout,
+    component: Layout,
     children: [
-      { path: '', name: 'home', component: HomePage },
-      { path: 'travels', name: 'travels', component: TravelsPage },
-      { path: 'post/:id', name: 'post', component: PostPage },
+      { path: '', name: 'user-home', component: UserHomePage },
+      { path: 'travels', name: 'user-travels', component: UserTravelsPage },
+      { path: 'post/:id', name: 'user-post', component: UserPostPage },
     ]
   },
+
+  // 2. Public-facing admin content
+  {
+    path: '/main-admin',
+    component: MainAdminLayout,
+    children: [
+      { path: '', name: 'main-admin-home', component: HomePage },
+      { path: 'travels', name: 'main-admin-travels', component: TravelsPage },
+      { path: 'post/:id', name: 'main-admin-post', component: PostPage },
+    ]
+  },
+
+  // 3. Admin login
   {
     path: '/admin/login',
-    name: 'login',
+    name: 'admin-login',
     component: LoginPage
   },
+
+  // 4. Protected admin dashboard
   {
     path: '/admin',
     component: AdminLayout,
-    beforeEnter: (to: any, from: any, next: any) => {
+    beforeEnter: (
+        to: RouteLocationNormalized,
+        from: RouteLocationNormalized,
+        next: NavigationGuardNext
+    ) => {
       const authStore = useAuthStore()
       if (!authStore.isAuthenticated) {
-        next({ name: 'login', query: { redirect: to.fullPath } })
+        next({ name: 'admin-login', query: { redirect: to.fullPath } })
       } else {
         next()
       }
@@ -59,7 +85,7 @@ const router = createRouter({
     } else if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth',
+        behavior: 'smooth'
       }
     } else {
       return { top: 0 }

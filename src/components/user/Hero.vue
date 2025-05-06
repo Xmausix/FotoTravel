@@ -8,19 +8,19 @@ const isTransitioning = ref(false)
 
 const backgrounds = [
   {
-    image: 'https://images.pexels.com/photos/1591373/pexels-photo-1591373.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    title: 'Discover Hidden Paradises',
-    subtitle: 'Explore the world\'s most beautiful beaches'
+    image: 'https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0086-42-scaled.jpg',
+    title: 'Odkrywaj',
+    subtitle: 'Niesamowite miejsca nie wychodząc z domu!'
   },
   {
-    image: 'https://images.pexels.com/photos/2577274/pexels-photo-2577274.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    title: 'Adventure Awaits',
-    subtitle: 'Trek through majestic mountain landscapes'
+    image: 'https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0028-28-scaled.jpg',
+    title: 'Odkrywaj',
+    subtitle: 'Niesamowite miejsca nie wychodząc z domu'
   },
   {
-    image: 'https://images.pexels.com/photos/161401/fushimi-inari-taisha-shrine-kyoto-japan-landmark-161401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-    title: 'Immerse in Culture',
-    subtitle: 'Experience traditions from around the globe'
+    image: 'https://fototravel.com.pl/wp-content/uploads/2023/11/DSC_0025-25-scaled.jpg',
+    title: 'Odkrywaj',
+    subtitle: 'Niesamowite miejsca nie wychodząc z domu'
   }
 ]
 
@@ -46,7 +46,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
+  <div class="relative h-[90vh] min-h-[600px] w-full overflow-hidden">
     <!-- Background images with transitions -->
     <div 
       v-for="(bg, index) in backgrounds" 
@@ -78,7 +78,7 @@ onMounted(() => {
           class="btn-primary text-lg transition-all duration-500 delay-200 hover:scale-105"
           :class="isTransitioning ? 'opacity-0 -translate-y-4' : 'opacity-100 translate-y-0'"
         >
-          Explore Destinations
+          Wszystkie podróże
         </button>
       </div>
     </div>

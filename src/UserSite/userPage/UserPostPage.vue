@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import {  computed, ref,  watch, onMounted } from 'vue'
+import {  computed, ref, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { usePostsStore } from '../../stores/posts'
 import PhotoGallery from '../../Components/common/PhotoGallery.vue'
 import { formatDate } from '../../utils/formatters'
 import { initMap } from '../../Logic/map'
-
-
-
-
 
 const route = useRoute()
 const router = useRouter()
@@ -33,7 +29,7 @@ onMounted(() => {
 })
 
 
-// leaflet map
+// maps leaflet
 type BlogPost = {
   id: string;
   title: string;
@@ -44,7 +40,7 @@ type BlogPost = {
 const blogPost = ref<BlogPost | null>(null); // zmieniamy nazwę na `blogPost`, by uniknąć konfliktów
 
 onMounted(async () => {
-  const res = await fetch('../../../Backend/Controller/Map/MapController/MapController.php?id=1');
+  const res = await fetch('/api/BlogController.php?id=1');
   const data = await res.json();
 
   console.log('Odebrane dane:', data); // ✅ sprawdź, czy jest "location"
@@ -57,6 +53,7 @@ onMounted(async () => {
     console.warn('Brak lokalizacji w poście');
   }
 });
+
 </script>
 
 <template>
@@ -136,9 +133,9 @@ onMounted(async () => {
         <!-- MAPA -->
         <div class="lg:col-span-1 sm:mt-8 lg:mt-0">
           <div class="w-full sticky h-[250px] lg:w-[700px] lg:h-[300px] shadow-xl rounded-lg overflow-hidden z-10">
-            <div>
-              <h1>{{post?.title}}</h1>
-              <p>{{post?.content}}</p>
+            <div v-if="post">
+              <h1>{{ post.title }}</h1>
+              <p>{{ post.content }}</p>
               <div id="map" class="h-96 w-full mt-4"></div>
             </div>
           </div>

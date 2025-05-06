@@ -18,21 +18,21 @@ function goToPost(id: string) {
   <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Featured Adventures</h2>
-        <p class="mt-4 text-xl text-gray-500">Discover our most inspiring travel stories</p>
+        <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Interesujące podróże</h2>
+        <p class="mt-4 text-xl text-gray-500">Zobacz moje najciekawsze podróże!</p>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div 
-          v-for="post in featuredPosts" 
-          :key="post.id" 
+        <div
+          v-for="post in featuredPosts"
+          :key="post.id"
           class="card group cursor-pointer"
           @click="goToPost(post.id)"
         >
           <div class="aspect-w-16 aspect-h-9 overflow-hidden">
-            <img 
-              :src="post.coverImage" 
-              :alt="post.title" 
+            <img
+              :src="post.coverImage"
+              :alt="post.title"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
@@ -49,9 +49,9 @@ function goToPost(id: string) {
             <p class="text-gray-600 mb-4">{{ post.excerpt }}</p>
             <div class="flex items-center justify-between">
               <div class="flex items-center">
-                <img 
-                  :src="post.author.avatar" 
-                  :alt="post.author.name" 
+                <img
+                  :src="post.author.avatar"
+                  :alt="post.author.name"
                   class="h-8 w-8 rounded-full mr-2"
                 />
                 <span class="text-sm text-gray-700">{{ post.author.name }}</span>
@@ -70,7 +70,7 @@ function goToPost(id: string) {
       
       <div class="mt-12 text-center">
         <router-link to="/travels" class="btn-primary">
-          View All Destinations
+          Odwiedź wszystkie Posty
         </router-link>
       </div>
     </div>
