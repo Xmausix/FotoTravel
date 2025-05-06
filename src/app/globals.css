@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 96%; /* Light Gray */
+    --foreground: 0 0% 15%; /* Dark Gray */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 15%;
+    --primary: 180 100% 25%; /* Teal */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 15%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 180 100% 25%; /* Teal */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 180 100% 25%; /* Teal */
+    --chart-1: 180 76% 35%;
+    --chart-2: 180 58% 45%;
+    --chart-3: 180 37% 55%;
+    --chart-4: 180 74% 60%;
+    --chart-5: 180 87% 65%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 92%; /* Slightly darker light gray for sidebar */
+    --sidebar-foreground: 0 0% 15%; /* Dark Gray */
+    --sidebar-primary: 180 100% 25%; /* Teal */
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 180 100% 30%; /* Slightly darker Teal for sidebar accent */
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 80%;
+    --sidebar-ring: 180 100% 25%; /* Teal */
+  }
+  .dark {
+    --background: 0 0% 10%; /* Dark background for dark mode */
+    --foreground: 0 0% 90%; /* Light gray text for dark mode */
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 90%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 180 100% 35%; /* Lighter Teal for dark mode */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 180 100% 35%; /* Lighter Teal for dark mode */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 45.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 180 100% 35%; /* Lighter Teal for dark mode */
+    --chart-1: 180 70% 50%;
+    --chart-2: 180 60% 45%;
+    --chart-3: 180 80% 55%;
+    --chart-4: 180 65% 60%;
+    --chart-5: 180 75% 55%;
+    --sidebar-background: 0 0% 8%; /* Darker background for sidebar in dark mode */
+    --sidebar-foreground: 0 0% 90%; /* Light gray text for dark mode */
+    --sidebar-primary: 180 100% 35%; /* Lighter Teal for dark mode */
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 180 100% 40%; /* Even lighter Teal for sidebar accent in dark mode */
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 22%;
+    --sidebar-ring: 180 100% 35%; /* Lighter Teal for dark mode */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
