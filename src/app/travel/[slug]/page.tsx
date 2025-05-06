@@ -1,4 +1,4 @@
-
+// src/app/travel/[slug]/page.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -8,25 +8,29 @@ import { Separator } from '@/components/ui/separator';
 import { Facebook, Twitter, Linkedin, Share2, MapPin, CalendarDays, User, Layers, Tag } from 'lucide-react';
 import { ThemeToggle } from '@/components/shared/theme-toggle';
 import { LightboxImage } from '@/components/shared/lightbox-image';
+// Usunięto: import dynamic from 'next/dynamic';
 
-const authorName = 'Alex Wanderer'; // Single author for all posts
+// 1. Statyczny import nowego komponentu MapDisplayWrapper
+import MapDisplayWrapper from '@/components/shared/MapDisplayWrapper';
 
-// Placeholder data - replace with actual data fetching based on slug
+const authorName = 'Alex Wanderer';
+
+// ... (reszta kodu getPostData pozostaje bez zmian)
 const getPostData = async (slug: string) => {
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 500));
-  
-  const posts = [
-    {
-      id: '1',
-      slug: 'majestic-mountains-of-patagonia',
-      title: 'Majestic Mountains of Patagonia',
-      date: '2024-07-15',
-      author: authorName,
-      tags: ['mountains', 'adventure', 'patagonia', 'hiking', 'south america'],
-      category: 'Nature',
-      content: `
-![Patagonia Landscape](https://picsum.photos/seed/patagonia-main/1200/600)
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    const posts = [
+        {
+            id: '1',
+            slug: 'majestic-mountains-of-patagonia',
+            title: 'Majestic Mountains of Patagonia',
+            date: '2024-07-15',
+            author: authorName,
+            tags: ['mountains', 'adventure', 'patagonia', 'hiking', 'south america'],
+            category: 'Nature',
+            content: `
+!Patagonia Landscape
 *The breathtaking Fitz Roy massif at sunrise.*
 
 ## A Journey into the Wild Heart of South America
@@ -57,24 +61,24 @@ Beyond the stunning landscapes, Patagonia boasts unique wildlife. Guanacos roam 
 *   **Accommodation:** Ranges from campsites and hostels to luxury lodges. Book well in advance, especially during peak season.
 *   **Gear:** Be prepared for all types of weather. Layers, waterproof clothing, and sturdy hiking boots are essential.
       `,
-      images: Array.from({ length: 12 }, (_, i) => ({
-        id: `img-${i + 1}`,
-        src: `https://picsum.photos/seed/patagonia-gallery${i+1}/800/600`,
-        alt: `Patagonia gallery image ${i + 1}`,
-        hint: `patagonia landscape ${i % 2 === 0 ? 'mountains' : 'lake'}`
-      })),
-      location: { name: 'El Chaltén, Argentina', lat: -49.3313, lng: -72.8895 },
-    },
-     {
-      id: '2',
-      slug: 'exploring-the-ancient-ruins-of-rome',
-      title: 'Exploring the Ancient Ruins of Rome',
-      date: '2024-07-10',
-      author: authorName,
-      tags: ['history', 'city', 'rome', 'italy', 'europe'],
-      category: 'Culture',
-      content: `
-![Roman Forum](https://picsum.photos/seed/rome-main/1200/600)
+            images: Array.from({ length: 12 }, (_, i) => ({
+                id: `img-${i + 1}`,
+                src: `https://picsum.photos/seed/patagonia-gallery${i+1}/800/600`,
+                alt: `Patagonia gallery image ${i + 1}`,
+                hint: `patagonia landscape ${i % 2 === 0 ? 'mountains' : 'lake'}`
+            })),
+            location: { name: 'El Chaltén, Argentina', lat: -49.3313, lng: -72.8895 },
+        },
+        {
+            id: '2',
+            slug: 'exploring-the-ancient-ruins-of-rome',
+            title: 'Exploring the Ancient Ruins of Rome',
+            date: '2024-07-10',
+            author: authorName,
+            tags: ['history', 'city', 'rome', 'italy', 'europe'],
+            category: 'Culture',
+            content: `
+!Roman Forum
 *A glimpse into the heart of ancient Rome.*
 
 ## Stepping Back in Time: The Eternal City
@@ -104,24 +108,24 @@ For a different perspective, I explored the Catacombs of Callixtus, an undergrou
 *   **Culture:** Toss a coin into the Trevi Fountain, wander through Piazza Navona, and soak in the vibrant atmosphere.
 *   **Getting around:** Rome is very walkable, but public transport (metro, buses) is also efficient.
       `,
-      images: Array.from({ length: 9 }, (_, i) => ({
-        id: `img-rome-${i + 1}`,
-        src: `https://picsum.photos/seed/rome-gallery${i+1}/800/600`,
-        alt: `Rome gallery image ${i + 1}`,
-        hint: `rome architecture ${i % 2 === 0 ? 'ruins' : 'landmark'}`
-      })),
-      location: { name: 'Rome, Italy', lat: 41.9028, lng: 12.4964 },
-    },
-    {
-      id: '3',
-      slug: 'serene-beaches-of-thailand',
-      title: 'Serene Beaches of Thailand',
-      date: '2024-07-05',
-      author: authorName,
-      tags: ['beach', 'relaxation', 'thailand', 'southeast asia', 'island hopping'],
-      category: 'Travel',
-      content: `
-![Thai Beach](https://picsum.photos/seed/thailand-main/1200/600)
+            images: Array.from({ length: 9 }, (_, i) => ({
+                id: `img-rome-${i + 1}`,
+                src: `https://picsum.photos/seed/rome-gallery${i+1}/800/600`,
+                alt: `Rome gallery image ${i + 1}`,
+                hint: `rome architecture ${i % 2 === 0 ? 'ruins' : 'landmark'}`
+            })),
+            location: { name: 'Rome, Italy', lat: 41.9028, lng: 12.4964 },
+        },
+        {
+            id: '3',
+            slug: 'serene-beaches-of-thailand',
+            title: 'Serene Beaches of Thailand',
+            date: '2024-07-05',
+            author: authorName,
+            tags: ['beach', 'relaxation', 'thailand', 'southeast asia', 'island hopping'],
+            category: 'Travel',
+            content: `
+!Thai Beach
 *Crystal clear waters and limestone karsts in Krabi.*
 
 ## Finding Paradise: Thailand's Coastal Gems
@@ -152,24 +156,24 @@ Thailand's Andaman Sea and Gulf Coast are dotted with countless islands, each wi
 *   **Stay hydrated:** Drink plenty of water, especially in the tropical heat.
 *   **Sun protection:** Use sunscreen, wear a hat, and seek shade during peak sun hours.
       `,
-      images: Array.from({ length: 10 }, (_, i) => ({
-        id: `img-thai-${i + 1}`,
-        src: `https://picsum.photos/seed/thailand-gallery${i+1}/800/600`,
-        alt: `Thailand beach gallery image ${i + 1}`,
-        hint: `thailand beach ${i % 2 === 0 ? 'ocean' : 'sand'}`
-      })),
-      location: { name: 'Krabi, Thailand', lat: 8.0863, lng: 98.9063 },
-    },
-     {
-      id: '4',
-      slug: 'urban-jungle-tokyo-adventures',
-      title: 'Urban Jungle: Tokyo Adventures',
-      date: '2024-06-28',
-      author: authorName,
-      tags: ['city', 'japan', 'urban', 'culture', 'food'],
-      category: 'City Break',
-      content: `
-![Tokyo Skyline](https://picsum.photos/seed/tokyo-main/1200/600)
+            images: Array.from({ length: 10 }, (_, i) => ({
+                id: `img-thai-${i + 1}`,
+                src: `https://picsum.photos/seed/thailand-gallery${i+1}/800/600`,
+                alt: `Thailand beach gallery image ${i + 1}`,
+                hint: `thailand beach ${i % 2 === 0 ? 'ocean' : 'sand'}`
+            })),
+            location: { name: 'Krabi, Thailand', lat: 8.0863, lng: 98.9063 },
+        },
+        {
+            id: '4',
+            slug: 'urban-jungle-tokyo-adventures',
+            title: 'Urban Jungle: Tokyo Adventures',
+            date: '2024-06-28',
+            author: authorName,
+            tags: ['city', 'japan', 'urban', 'culture', 'food'],
+            category: 'City Break',
+            content: `
+!Tokyo Skyline
 *Shibuya Crossing, an iconic symbol of Tokyo's energy.*
 
 ## Navigating the Neon Metropolis: Tokyo
@@ -204,182 +208,196 @@ Tokyo is a food lover's paradise. From Michelin-starred restaurants to humble ra
 *   **Suica or Pasmo Card:** Essential for navigating public transport.
 *   **Learn basic Japanese phrases:** While many people in tourist areas speak some English, knowing a few phrases is appreciated.
       `,
-      images: Array.from({ length: 11 }, (_, i) => ({
-        id: `img-tokyo-${i + 1}`,
-        src: `https://picsum.photos/seed/tokyo-gallery${i+1}/800/600`,
-        alt: `Tokyo gallery image ${i + 1}`,
-        hint: `tokyo city ${i % 2 === 0 ? 'street' : 'skyline'}`
-      })),
-      location: { name: 'Tokyo, Japan', lat: 35.6895, lng: 139.6917 },
-    },
-  ];
+            images: Array.from({ length: 11 }, (_, i) => ({
+                id: `img-tokyo-${i + 1}`,
+                src: `https://picsum.photos/seed/tokyo-gallery${i+1}/800/600`,
+                alt: `Tokyo gallery image ${i + 1}`,
+                hint: `tokyo city ${i % 2 === 0 ? 'street' : 'skyline'}`
+            })),
+            location: { name: 'Tokyo, Japan', lat: 35.6895, lng: 139.6917 },
+        },
+    ];
 
-  const post = posts.find(p => p.slug === slug);
-  if (!post) return null; // Or throw an error for a 404 page
+    const post = posts.find(p => p.slug === slug);
+    if (!post) return null;
 
-  // Simulate markdown to HTML conversion
-  // In a real app, use a library like 'marked' or 'react-markdown'
-  const htmlContent = post.content
-    .replace(/^(#{1,6})\s*(.*)/gm, (match, hashes, text) => `<h${hashes.length} class="font-bold ${hashes.length === 2 ? 'text-2xl mt-6 mb-3' : hashes.length === 3 ? 'text-xl mt-4 mb-2' : 'text-lg mt-3 mb-1'}">${text}</h${hashes.length}>`)
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, src) => `<div class="my-6 rounded-lg overflow-hidden shadow-lg"><Image src="${src}" alt="${alt}" width="1200" height="600" class="w-full h-auto object-cover" data-ai-hint="travel landscape" /></div>`)
-    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
-    .replace(/^\s*-\s*(.*)/gm, '<li class="ml-6 list-disc">$1</li>')
-    .replace(/(<li>.*<\/li>)+/gs, (match) => `<ul class="my-4">${match}</ul>`)
-    .replace(/^>\s*(.*)/gm, '<blockquote class="border-l-4 border-primary pl-4 italic my-4 text-muted-foreground">$1</blockquote>')
-    .replace(/\n/g, '<br />')
-    .replace(/<br \/>(\s*<br \/>)+/g, '<br /><br />') // Consolidate multiple line breaks
-    .replace(/<br \/>(<h[1-6]>|<ul|<blockquote|<div)/g, '$1') // Remove br before block elements
-    .replace(/(<\/h[1-6]>|<\/ul|<\/blockquote|<\/div>)<br \/>/g, '$1'); // Remove br after block elements
+    const htmlContent = post.content
+        .replace(/^(#{1,6})\s*(.*)/gm, (match, hashes, text) => `<h${hashes.length} class="font-bold ${hashes.length === 2 ? 'text-2xl mt-6 mb-3' : hashes.length === 3 ? 'text-xl mt-4 mb-2' : 'text-lg mt-3 mb-1'}">${text}</h${hashes.length}>`)
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/!\[(.*?)\]\((.*?)\)/g, (match, alt, src) => {
+            const imgData = post.images.find(img => img.src.includes(src.split('/').pop()?.split('?')[0] || '')) || { hint: 'travel landscape' };
+            return `<div class="my-6 rounded-lg overflow-hidden shadow-lg"><Image src="${src}" alt="${alt}" width="1200" height="600" class="w-full h-auto object-cover" data-ai-hint="${imgData.hint}" /></div>`;
+        })
+        .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
+        .replace(/^\s*-\s*(.*)/gm, '<li class="ml-6 list-disc">$1</li>')
+        .replace(/(<li>.*<\/li>)+/gs, (match) => `<ul class="my-4">${match}</ul>`)
+        .replace(/^>\s*(.*)/gm, '<blockquote class="border-l-4 border-primary pl-4 italic my-4 text-muted-foreground">$1</blockquote>')
+        .replace(/\n/g, '<br />')
+        .replace(/<br \/>(\s*<br \/>)+/g, '<br /><br />')
+        .replace(/<br \/>(<h[1-6]>|<ul|<blockquote|<div)/g, '$1')
+        .replace(/(<\/h[1-6]>|<\/ul|<\/blockquote|<\/div>)<br \/>/g, '$1');
 
-
-  return { ...post, htmlContent };
+    return { ...post, htmlContent };
 };
+
+// Usunięto:
+// const InteractiveMap = dynamic(() => import('@/components/shared/InteractiveMap'), {
+//     ssr: false,
+//     loading: () => (
+//         <div className="aspect-video bg-muted flex items-center justify-center rounded-lg overflow-hidden">
+//             <p>Ładowanie mapy...</p>
+//         </div>
+//     ),
+// });
 
 
 export default async function SinglePostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostData(params.slug);
+    const post = await getPostData(params.slug);
 
-  if (!post) {
+    if (!post) {
+        return (
+            <div className="flex flex-col min-h-screen items-center justify-center">
+                <h1 className="text-4xl font-bold text-destructive">Post Not Found</h1>
+                <p className="text-muted-foreground mt-4">Sorry, the post you are looking for does not exist.</p>
+                <Button asChild className="mt-8">
+                    <Link href="/travel">Back to Travel</Link>
+                </Button>
+            </div>
+        );
+    }
+
     return (
-      <div className="flex flex-col min-h-screen items-center justify-center">
-        <h1 className="text-4xl font-bold text-destructive">Post Not Found</h1>
-        <p className="text-muted-foreground mt-4">Sorry, the post you are looking for does not exist.</p>
-        <Button asChild className="mt-8">
-          <Link href="/travel">Back to Travel</Link>
-        </Button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-primary">
-            FotoTravel
-          </Link>
-          <nav className="flex items-center space-x-6">
-            <Link href="/travel" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Travel
-            </Link>
-            <Link href="/#contact" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Contact
-            </Link>
-            <Link href="/privacy-policy" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-              Privacy Policy
-            </Link>
-            <ThemeToggle />
-          </nav>
-        </div>
-      </header>
-
-      <main className="container py-12">
-        <article className="max-w-4xl mx-auto">
-          <header className="mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">{post.title}</h1>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-              <div className="flex items-center"><CalendarDays size={16} className="mr-2 text-primary" /> {post.date}</div>
-              <div className="flex items-center"><User size={16} className="mr-2 text-primary" /> By {post.author}</div>
-              <div className="flex items-center"><Layers size={16} className="mr-2 text-primary" /> {post.category}</div>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {post.tags.map(tag => (
-                <Badge key={tag} variant="secondary" className="text-xs flex items-center">
-                  <Tag size={12} className="mr-1 text-primary" />{tag}
-                </Badge>
-              ))}
-            </div>
-          </header>
-
-          <Separator className="my-8" />
-          
-          <div
-            className="prose prose-lg dark:prose-invert max-w-none text-foreground leading-relaxed selection:bg-primary selection:text-primary-foreground"
-            dangerouslySetInnerHTML={{ __html: post.htmlContent }}
-          />
-
-          <Separator className="my-12" />
-
-          {/* Image Gallery */}
-          <section>
-            <h2 className="text-3xl font-bold text-foreground mb-6">Photo Gallery</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {post.images.map((image, index) => (
-                 <LightboxImage key={image.id} src={image.src} alt={image.alt} images={post.images} currentIndex={index} data-ai-hint={image.hint} />
-              ))}
-            </div>
-          </section>
-
-          <Separator className="my-12" />
-
-          {/* Map Section */}
-          <section>
-            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center">
-              <MapPin size={28} className="mr-3 text-primary" /> Location: {post.location.name}
-            </h2>
-            <Card className="shadow-lg">
-              <CardContent className="p-0">
-                <div className="aspect-video bg-muted flex items-center justify-center rounded-lg overflow-hidden">
-                   <Image src={`https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=800&height=600&center=lonlat:${post.location.lng},${post.location.lat}&zoom=10&marker=lonlat:${post.location.lng},${post.location.lat};color:%23ff0000;size:medium&apiKey=YOUR_GEOAPIFY_KEY`} 
-                    alt={`Map of ${post.location.name}`}
-                    width={800} 
-                    height={600} 
-                    className="w-full h-full object-cover"
-                    data-ai-hint="map location"
-                  />
+        <div className="flex flex-col min-h-screen bg-background">
+            <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <div className="container flex h-16 items-center justify-between">
+                    <Link href="/" className="text-2xl font-bold text-primary">
+                        FotoTravel
+                    </Link>
+                    <nav className="flex items-center space-x-6">
+                        <Link href="/travel" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                            Travel
+                        </Link>
+                        <Link href="/#contact" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                            Contact
+                        </Link>
+                        <Link href="/privacy-policy" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+                            Privacy Policy
+                        </Link>
+                        <ThemeToggle />
+                    </nav>
                 </div>
-              </CardContent>
-            </Card>
-          </section>
+            </header>
 
-          <Separator className="my-12" />
+            <main className="container py-12">
+                <article className="max-w-4xl mx-auto">
+                    <header className="mb-8">
+                        <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">{post.title}</h1>
+                        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                            <div className="flex items-center"><CalendarDays size={16} className="mr-2 text-primary" /> {post.date}</div>
+                            <div className="flex items-center"><User size={16} className="mr-2 text-primary" /> By {post.author}</div>
+                            <div className="flex items-center"><Layers size={16} className="mr-2 text-primary" /> {post.category}</div>
+                        </div>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                            {post.tags.map(tag => (
+                                <Badge key={tag} variant="secondary" className="text-xs flex items-center">
+                                    <Tag size={12} className="mr-1 text-primary" />{tag}
+                                </Badge>
+                            ))}
+                        </div>
+                    </header>
 
-          {/* Share Section */}
-          <section className="text-center">
-            <h3 className="text-xl font-semibold text-foreground mb-4">Share this post</h3>
-            <div className="flex justify-center space-x-4">
-              <Button variant="outline" size="icon" aria-label="Share on Facebook">
-                <Facebook size={20} className="text-primary" />
-              </Button>
-              <Button variant="outline" size="icon" aria-label="Share on Twitter">
-                <Twitter size={20} className="text-primary" />
-              </Button>
-              <Button variant="outline" size="icon" aria-label="Share on LinkedIn">
-                <Linkedin size={20} className="text-primary" />
-              </Button>
-              <Button variant="outline" size="icon" aria-label="Copy link">
-                <Share2 size={20} className="text-primary" />
-              </Button>
-            </div>
-          </section>
-        </article>
-      </main>
+                    <Separator className="my-8" />
 
-      <footer className="py-12 bg-foreground text-background">
-        <div className="container text-center">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} FotoTravel. All rights reserved.
-          </p>
+                    <div
+                        className="prose prose-lg dark:prose-invert max-w-none text-foreground leading-relaxed selection:bg-primary selection:text-primary-foreground"
+                        dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+                    />
+
+                    <Separator className="my-12" />
+
+                    <section>
+                        <h2 className="text-3xl font-bold text-foreground mb-6">Photo Gallery</h2>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                            {post.images.map((image, index) => (
+                                <LightboxImage
+                                    key={image.id}
+                                    src={image.src}
+                                    alt={image.alt}
+                                    images={post.images}
+                                    currentIndex={index}
+                                    data-ai-hint={image.hint}
+                                />
+                            ))}
+                        </div>
+                    </section>
+
+                    <Separator className="my-12" />
+
+                    {post.location && (
+                        <section>
+                            <h2 className="text-3xl font-bold text-foreground mb-6 flex items-center">
+                                <MapPin size={28} className="mr-3 text-primary" /> Location: {post.location.name}
+                            </h2>
+                            <Card className="shadow-lg">
+                                <CardContent className="p-0">
+                                    <div className="aspect-video bg-muted rounded-lg overflow-hidden">
+                                        {/* 2. Użycie MapDisplayWrapper zamiast bezpośredniego InteractiveMap */}
+                                        <MapDisplayWrapper
+                                            lat={post.location.lat}
+                                            lng={post.location.lng}
+                                            zoom={12}
+                                            markerText={post.location.name}
+                                            // className="w-full h-full" // Można dodać, jeśli MapDisplayWrapper ma przyjmować className
+                                            // i przekazywać go do DynamicallyLoadedInteractiveMap,
+                                            // a InteractiveMap ma go obsługiwać.
+                                            // W obecnej konfiguracji InteractiveMap ma domyślne "w-full h-full"
+                                        />
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </section>
+                    )}
+
+                    <Separator className="my-12" />
+
+                    <section className="text-center">
+                        <h3 className="text-xl font-semibold text-foreground mb-4">Share this post</h3>
+                        <div className="flex justify-center space-x-4">
+                            <Button variant="outline" size="icon" aria-label="Share on Facebook">
+                                <Facebook size={20} className="text-primary" />
+                            </Button>
+                            <Button variant="outline" size="icon" aria-label="Share on Twitter">
+                                <Twitter size={20} className="text-primary" />
+                            </Button>
+                            <Button variant="outline" size="icon" aria-label="Share on LinkedIn">
+                                <Linkedin size={20} className="text-primary" />
+                            </Button>
+                            <Button variant="outline" size="icon" aria-label="Copy link">
+                                <Share2 size={20} className="text-primary" />
+                            </Button>
+                        </div>
+                    </section>
+                </article>
+            </main>
+
+            <footer className="py-12 bg-foreground text-background">
+                <div className="container text-center">
+                    <p className="text-sm text-muted-foreground">
+                        &copy; {new Date().getFullYear()} FotoTravel. All rights reserved.
+                    </p>
+                </div>
+            </footer>
         </div>
-      </footer>
-    </div>
-  );
+    );
 }
 
-// This function is needed for Next.js to know which slugs are valid
 export async function generateStaticParams() {
-  // In a real app, fetch all post slugs from your data source
-  const posts = [
-    { slug: 'majestic-mountains-of-patagonia' },
-    { slug: 'exploring-the-ancient-ruins-of-rome' },
-    { slug: 'serene-beaches-of-thailand' },
-    { slug: 'urban-jungle-tokyo-adventures' },
-    // Add other slugs here
-  ];
- 
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+    const posts = [
+        { slug: 'majestic-mountains-of-patagonia' },
+        { slug: 'exploring-the-ancient-ruins-of-rome' },
+        { slug: 'serene-beaches-of-thailand' },
+        { slug: 'urban-jungle-tokyo-adventures' },
+    ];
+    return posts.map((post) => ({ slug: post.slug, }));
 }
