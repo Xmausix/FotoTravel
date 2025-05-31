@@ -181,9 +181,6 @@ export default function TravelPage() {
               <Link href="/travel" className="text-sm font-medium text-primary">
                 Travel
               </Link>
-              <Link href="/#contact" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                Contact
-              </Link>
               <Link href="/privacy-policy" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
                 Privacy Policy
               </Link>
