@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LayoutDashboard, PlusCircle, Search, MoreHorizontal, Edit, Trash2, FileUp, ListFilter } from 'lucide-react';
+import { LayoutDashboard, PlusCircle,  MoreHorizontal, Edit, Trash2, FileUp, ListFilter } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast"; // Assuming useToast is client-side only
 
 const author = 'Alex Wanderer'; // Single author for all posts
