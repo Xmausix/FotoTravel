@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -5,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LayoutDashboard, PlusCircle,  MoreHorizontal, Edit, Trash2, FileUp, ListFilter } from 'lucide-react';
+import {  PlusCircle,  MoreHorizontal, Edit, Trash2, FileUp, ListFilter } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast"; // Assuming useToast is client-side only
 
 const author = 'Alex Wanderer'; // Single author for all posts
@@ -77,7 +78,7 @@ export default function DashboardPostsPage() {
             </DropdownMenu>
             <ExportButton />
             <Button asChild size="sm" className="h-8 gap-1">
-              <Link href="/dashboard/posts/new">
+              <Link href="./new/page.tsx">
                 <PlusCircle className="h-3.5 w-3.5" />
                 <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                   Add Post
